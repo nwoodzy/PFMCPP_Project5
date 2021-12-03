@@ -55,7 +55,15 @@ If you need inspiration for what to write, take a look at previously approved st
 struct Sailboat 
 {
     std::string boatName;
-    int mastHeight;
+    struct mast
+    {
+        int mastHeight;
+        int boomLength;
+        bool isBermudaRig;
+        bool isLateen;
+        bool isStepped;
+        int numOfReefs;
+    };
     int length;
     bool isAnchored;
     float sailArea;
@@ -70,6 +78,14 @@ struct SchoolDay
     std::string dayOfTheWeek;
     float length;
     int numberOfKids;
+    struct Child
+    {
+        int numOfNaps;
+        int childAge;
+        bool hasLunch;
+        bool isDressed;
+        bool wearingShoes;
+    };
     bool runningLate;
     bool halfDay;
     bool isRaining;
@@ -84,6 +100,15 @@ struct SurfReport
     std::string windDirection;
     int windSpeed;
     bool isRaining;
+    bool isBusy;
+    struct Surfer
+    {
+        bool atBeach;
+        int surferAge;
+        int surferSkill;
+        float boardSize;
+        bool havingLesson;
+    }
 
 };
 /*
