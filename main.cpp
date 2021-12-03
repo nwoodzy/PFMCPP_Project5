@@ -1,3 +1,4 @@
+#include <iostream>
 /*
 Project 5: Part 1 / 4
  video Chapter 2 - Part 12
@@ -51,23 +52,65 @@ If you need inspiration for what to write, take a look at previously approved st
 /*
  UDT 1:
  */
+struct Sailboat 
+{
+    std::string boatName;
+    int mastHeight;
+    int length;
+    bool isAnchored;
+    float sailArea;
+    bool hasKeel;
+};
 
 /*
  UDT 2:
  */
-
+struct SchoolDay
+{   
+    std::string dayOfTheWeek;
+    float length;
+    int numberOfKids;
+    bool runningLate;
+    bool halfDay;
+    bool isRaining;
+};
 /*
  UDT 3:
  */
+struct SurfReport
+{
+    float waveHeight;
+    float wavePeriod;
+    std::string windDirection;
+    int windSpeed;
+    bool isRaining;
 
+};
 /*
  new UDT 4:
  */
+struct ChristmasTree
+{
+    int treeHeight;
+    std::string treeVariety;
+    bool hasLights;
+    bool hasOrnaments;
+    int numOfOrnaments;
+    bool needsWater;
+};
 
 /*
  new UDT 5:
  */
+struct RoadWork
+{
+    int areaNumber;
+    std::string warningMessage;
+    int numSafetyWorkers;
+    int numRoadCrew;
+    bool weatherCheck;
 
+};
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
  Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
