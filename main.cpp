@@ -63,11 +63,20 @@ struct Sailboat
         bool isLateen;
         bool isStepped;
         int numOfReefs;
+
+        void reduceSail( int reefs );
+        void increaseSail (int reefs );
+        int getHeeldDistance ( int distanceToWater );
     };
+    int numOfSails;
     int length;
     bool isAnchored;
     float sailArea;
     bool hasKeel;
+    
+    float findOppositeTack ( bool onPort, float directionInDegrees );//a+180mod360
+    void trimSail( int inchesOfSheet );
+    void dropAnchor();
 };
 
 /*
@@ -85,10 +94,18 @@ struct SchoolDay
         bool hasLunch;
         bool isDressed;
         bool wearingShoes;
+
+        void goHomeEarly();
+        void makeLunch();
+        void takeNap();
     };
     bool runningLate;
     bool halfDay;
     bool isRaining;
+    
+    void splitUpClass( int numOfGroups );
+    void lengthenSchoolDay( float lengthIncrease );
+    void sunCameOut();
 };
 /*
  UDT 3:
@@ -108,8 +125,14 @@ struct SurfReport
         int surferSkill;
         float boardSize;
         bool havingLesson;
-    }
 
+        void levelUp( int improvementAmount );
+        int getTubed( int currentStokeLevel );
+        int wipeOut( int currentStokeLevel );
+    };
+    void increaseWaveHeight( float newWaveHeight );
+    bool shouldIGoOut( int fatigueLevel );
+    float chooseBoardSize();
 };
 /*
  new UDT 4:
