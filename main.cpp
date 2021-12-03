@@ -54,31 +54,62 @@ If you need inspiration for what to write, take a look at previously approved st
  */
 struct Sailboat 
 {
+    Sailboat();
+    ~Sailboat(){};
+
     std::string boatName;
-    struct mast
+    struct Mast
     {
-        int mastHeight;
-        int boomLength;
-        bool isBermudaRig;
-        bool isLateen;
-        bool isStepped;
-        int numOfReefs;
+        Mast();
+        ~Mast(){};
+
+        int mastHeight = 14;
+        int boomLength = 109;
+        bool isBermudaRig = true;
+        bool isLateen = false;
+        bool isStepped = true;
+        int numOfReefs = 0;
 
         void reduceSail( int reefs );
         void increaseSail (int reefs );
         int getHeeldDistance ( int distanceToWater );
     };
-    int numOfSails;
-    int length;
-    bool isAnchored;
-    float sailArea;
-    bool hasKeel;
+    Mast mast;
+
+    int numOfSails = 1;
+    float length = 13.8;
+    bool isAnchored = false;
+    float sailArea = 50.6;
+    bool hasKeel = false;
     
     float findOppositeTack ( bool onPort, float directionInDegrees );//a+180mod360
     void trimSail( int inchesOfSheet );
     void dropAnchor();
 };
+Sailboat::Sailboat(){}
 
+float findOppositeTack( float directionInDegrees )
+{
+    return static_cast< float >( directionInDegrees + 180.f ) % 360.f
+}
+
+void trimSail( int currentTrim, int inchesOfSheet )
+{
+    if (inchesOfSheet != 0)
+    {
+        currentTrim -= inchesOfSheet;
+    }
+    std::cout << "you have no sheet to trim!" << std::endl; 
+}
+
+void dropAnchor()
+{
+    if (isAnchored == false)
+    {
+        isAnchored == true;
+    }
+    std::cout << "you're already anchored!" << std::endl; 
+}
 /*
  UDT 2:
  */
@@ -99,6 +130,7 @@ struct SchoolDay
         void makeLunch();
         void takeNap();
     };
+    Child child;
     bool runningLate;
     bool halfDay;
     bool isRaining;
@@ -107,6 +139,7 @@ struct SchoolDay
     void lengthenSchoolDay( float lengthIncrease );
     void sunCameOut();
 };
+SchoolDay schoolday;
 /*
  UDT 3:
  */
@@ -130,35 +163,13 @@ struct SurfReport
         int getTubed( int currentStokeLevel );
         int wipeOut( int currentStokeLevel );
     };
+    Surfer s;
     void increaseWaveHeight( float newWaveHeight );
     bool shouldIGoOut( int fatigueLevel );
     float chooseBoardSize();
 };
-/*
- new UDT 4:
- */
-struct ChristmasTree
-{
-    int treeHeight;
-    std::string treeVariety;
-    bool hasLights;
-    bool hasOrnaments;
-    int numOfOrnaments;
-    bool needsWater;
-};
+SurfReport surfReport;
 
-/*
- new UDT 5:
- */
-struct RoadWork
-{
-    int areaNumber;
-    std::string warningMessage;
-    int numSafetyWorkers;
-    int numRoadCrew;
-    bool weatherCheck;
-
-};
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
  Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
