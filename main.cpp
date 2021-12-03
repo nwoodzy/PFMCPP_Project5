@@ -55,7 +55,7 @@ If you need inspiration for what to write, take a look at previously approved st
 struct Sailboat 
 {
     Sailboat();
-    ~Sailboat(){};
+    ~Sailboat(){}
 
     std::string boatName;
     struct Mast
@@ -77,20 +77,21 @@ struct Sailboat
     Mast mast;
 
     int numOfSails = 1;
-    float length = 13.8;
+    float length = 13.8f;
     bool isAnchored = false;
-    float sailArea = 50.6;
+    float sailArea = 50.6f;
     bool hasKeel = false;
     
-    float findOppositeTack ( bool onPort, float directionInDegrees );//a+180mod360
+    int findOppositeTack ( int directionInDegrees );//a+180mod360
     void trimSail( int inchesOfSheet );
     void dropAnchor();
 };
 Sailboat::Sailboat(){}
+Sailboat laser;
 
-float findOppositeTack( float directionInDegrees )
+float findOppositeTack( int directionInDegrees )
 {
-    return static_cast< float >( directionInDegrees + 180.f ) % 360.f
+    return ( directionInDegrees + 180 ) % 360;
 }
 
 void trimSail( int currentTrim, int inchesOfSheet )
@@ -104,9 +105,10 @@ void trimSail( int currentTrim, int inchesOfSheet )
 
 void dropAnchor()
 {
-    if (isAnchored == false)
+    if (laser.isAnchored == false)
     {
-        isAnchored == true;
+        laser.isAnchored = !laser.isAnchored;
+        std::cout << "now you're anchored mate." << std::endl; 
     }
     std::cout << "you're already anchored!" << std::endl; 
 }
