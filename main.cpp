@@ -63,7 +63,7 @@ struct Sailboat
         Mast();
         ~Mast(){};
 
-        int mastHeight = 14;
+        int mastHeight;
         int boomLength = 109;
         bool isBermudaRig = true;
         bool isLateen = false;
@@ -82,11 +82,20 @@ struct Sailboat
     float sailArea = 50.6f;
     bool hasKeel = false;
     
-    int findOppositeTack ( int directionInDegrees );//a+180mod360
+    int findOppositeTack ( int directionInDegrees );
     void trimSail( int inchesOfSheet );
     void dropAnchor();
 };
-Sailboat::Sailboat(){}
+Sailboat::Sailboat()
+{
+    int mastHeight = 14;
+    std::cout << "a Sailboat was created" << std::endl; 
+}
+Sailboat::~Sailboat()
+{
+    std::cout << "a Sailboat was destroyed" << std::endl; 
+}
+
 Sailboat laser;
 
 float findOppositeTack( int directionInDegrees )
@@ -141,6 +150,10 @@ struct SchoolDay
     void lengthenSchoolDay( float lengthIncrease );
     void sunCameOut();
 };
+SchoolDay::SchoolDay()
+{
+
+};
 SchoolDay schoolday;
 /*
  UDT 3:
@@ -183,7 +196,6 @@ SurfReport surfReport;
  Wait for my code review.
  */
 
-#include <iostream>
 int main()
 {
     std::cout << "good to go!" << std::endl;
