@@ -343,6 +343,9 @@ struct Lineup
     SurfReport::Surfer madeline{};
     SurfReport::Surfer coretta{};
     SurfReport tuesday{};
+
+    void getSurferInfo( SurfReport::Surfer surfer );
+    
 };
 
 Lineup::Lineup()
