@@ -61,7 +61,7 @@ struct Sailboat
     struct Mast
     {
         Mast();
-        ~Mast(){};
+        ~Mast();
 
         int mastHeight;
         int boomLength = 109;
@@ -326,7 +326,7 @@ float SurfReport::chooseBoardSize()
     {
         if (boardLength > 5.0)
         {
-            boardLength -= .5
+            boardLength -= .5;
         }
     }
     return boardLength;
@@ -337,17 +337,31 @@ float SurfReport::chooseBoardSize()
  */
 struct Lineup
 {
+    Lineup();
+    ~Lineup();
     SurfReport::Surfer joe{ };
     SurfReport::Surfer madeline{};
     SurfReport::Surfer coretta{};
     SurfReport tuesday{};
 };
 
+Lineup::Lineup()
+{
+    std::cout << "a new Lineup was created" << std::endl;
+}
+
+Lineup::~Lineup()
+{
+    std::cout << "a Lineup was destroyed" << std::endl;
+    tuesday.isBusy = false;
+}
 /*
  new UDT 5:
  */
 struct SchoolWeek 
 {
+    SchoolWeek();
+    ~SchoolWeek();
     SchoolDay monday{};
     SchoolDay tuesday{};
     SchoolDay wednesday{};
@@ -355,7 +369,20 @@ struct SchoolWeek
     SchoolDay friday{};
 };
 
+SchoolWeek::SchoolWeek()
+{
+    std::cout << "a School Week was created" << std::endl;
+}
 
+SchoolWeek::~SchoolWeek()
+{
+    monday.length = 6.0;
+    tuesday.length = 6.0;
+    wednesday.length = 6.0;
+    thursday.length = 6.0;
+    friday.length = 6.0;
+    std::cout << "a SchoolWeek was destroyed" << std::endl;
+}
 
 
 /*
