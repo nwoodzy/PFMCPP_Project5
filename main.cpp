@@ -55,7 +55,7 @@ If you need inspiration for what to write, take a look at previously approved st
 struct Sailboat 
 {
     Sailboat();
-    ~Sailboat(){}
+    ~Sailboat();
 
     std::string boatName;
     struct Mast
@@ -76,61 +76,84 @@ struct Sailboat
     };
     Mast mast;
 
-    int numOfSails = 1;
+    int numOfSails;
     float length = 13.8f;
     bool isAnchored = false;
     float sailArea = 50.6f;
-    bool hasKeel = false;
+    bool hasKeel;
+    bool isStillFloating = true;
     
     int findOppositeTack ( int directionInDegrees );
-    void trimSail( int inchesOfSheet );
+    void trimSail( int currentTrim, int inchesOfSheet );
     void dropAnchor();
 };
 Sailboat::Sailboat()
 {
-    int mastHeight = 14;
-    std::cout << "a Sailboat was created" << std::endl; 
+    numOfSails = 1;
+    hasKeel = false;
+    std::cout << "a Sailboat named" << boatName << "was created" << std::endl; 
 }
 Sailboat::~Sailboat()
 {
-    std::cout << "a Sailboat was destroyed" << std::endl; 
+    std::cout << "a Sailboat named" << boatName << "was destroyed" << std::endl; 
 }
+Sailboat::Mast::Mast()
+{
+    int mastHeight = 14;
+    std::cout << "a mast was created" << std::endl;
+}
+
+Sailboat::Mast::~Mast()
+{
+    std::cout << "a mast was destroyed" << std::endl; 
+}
+
 
 Sailboat laser;
 
-float findOppositeTack( int directionInDegrees )
+int Sailboat::findOppositeTack( int directionInDegrees )
 {
     return ( directionInDegrees + 180 ) % 360;
 }
 
-void trimSail( int currentTrim, int inchesOfSheet )
+void Sailboat::trimSail( int currentTrim, int inchesOfSheet )
 {
     if (inchesOfSheet != 0)
     {
-        currentTrim -= inchesOfSheet;
+        for (int x = 0; x <= inchesOfSheet; x++)
+        {
+            currentTrim -= inchesOfSheet;
+        }
     }
     std::cout << "you have no sheet to trim!" << std::endl; 
 }
 
-void dropAnchor()
+void Sailboat::dropAnchor()
 {
-    if (laser.isAnchored == false)
+    while (bool isStillFloating = true)
     {
-        laser.isAnchored = !laser.isAnchored;
-        std::cout << "now you're anchored mate." << std::endl; 
+        if (laser.isAnchored == false)
+        {
+            laser.isAnchored = !laser.isAnchored;
+            std::cout << "now you're anchored mate." << std::endl; 
+        }
+        std::cout << "you're already anchored!" << std::endl; 
     }
-    std::cout << "you're already anchored!" << std::endl; 
 }
 /*
  UDT 2:
  */
 struct SchoolDay
 {   
+    SchoolDay();
+    ~SchoolDay();
     std::string dayOfTheWeek;
     float length;
-    int numberOfKids;
+    int numberOfKids = 15;
     struct Child
     {
+        Child();
+        ~Child();
         int numOfNaps;
         int childAge;
         bool hasLunch;
@@ -143,47 +166,197 @@ struct SchoolDay
     };
     Child child;
     bool runningLate;
-    bool halfDay;
-    bool isRaining;
+    bool halfDay = false;
+    bool isRaining = false;
     
     void splitUpClass( int numOfGroups );
     void lengthenSchoolDay( float lengthIncrease );
     void sunCameOut();
 };
 SchoolDay::SchoolDay()
-{
+{ 
+    dayOfTheWeek = "Monday";
+    length = 6.f;
+    runningLate = false;
+    std::cout << dayOfTheWeek << "was created" << std::endl;
 
 };
-SchoolDay schoolday;
+SchoolDay::~SchoolDay()
+{
+    std::cout << dayOfTheWeek << "was destroyed" << std::endl;
+};
+SchoolDay::Child::Child()
+{
+    std::cout << "a child aged:" << childAge << "was created" << std::endl;
+}
+SchoolDay::Child::~Child()
+{
+    std::cout << "a child aged:" << childAge << "was destroyed" << std::endl;
+}
+
+void SchoolDay::splitUpClass(int numOfGroups)
+{   
+    if (numberOfKids != 0)
+    {
+        numberOfKids /= 2;
+    }
+    else
+    {
+        std::cout << "there are" << numberOfKids << "kids in class!" << std::endl;
+    }
+}
+void SchoolDay::lengthenSchoolDay( float lengthIncrease )
+{
+    while (halfDay == false)
+    {
+        length += lengthIncrease;
+        halfDay = true;
+    }
+    
+}   
+void SchoolDay::sunCameOut()
+{
+    if (isRaining == true)
+    {
+        isRaining = false;
+        std::cout << "sun came out" << std::endl;
+    }
+    else
+    {
+        std::cout << "sun is already out" << std::endl;
+    }
+}
+
 /*
  UDT 3:
  */
 struct SurfReport
 {
+    SurfReport();
+    ~SurfReport();
     float waveHeight;
     float wavePeriod;
     std::string windDirection;
     int windSpeed;
-    bool isRaining;
-    bool isBusy;
+    bool isRaining = false;
+    bool isBusy = false;
     struct Surfer
     {
-        bool atBeach;
+        Surfer();
+        ~Surfer();
+        bool atBeach = true;
         int surferAge;
-        int surferSkill;
-        float boardSize;
-        bool havingLesson;
+        int surferSkill = 0;
+        float boardSize = 6.8f;
+        bool havingLesson = false;
 
         void levelUp( int improvementAmount );
-        int getTubed( int currentStokeLevel );
-        int wipeOut( int currentStokeLevel );
+        void getTubed( int currentStokeLevel );
+        void wipeOut( int currentStokeLevel );
     };
     Surfer s;
+
     void increaseWaveHeight( float newWaveHeight );
     bool shouldIGoOut( int fatigueLevel );
     float chooseBoardSize();
 };
-SurfReport surfReport;
+
+SurfReport::SurfReport()
+{
+    waveHeight = 3.5;
+    wavePeriod = 18.4;
+    windDirection = "SSE";
+    windSpeed = 10;
+    std::cout<< "a SurfReport was created" << std::endl;
+}
+
+SurfReport::~SurfReport()
+{
+    std::cout<< "a SurfReport was destroyed" << std::endl;
+}
+
+SurfReport::Surfer::Surfer()
+{
+    surferAge = 35;
+    std::cout<< "a Surfer aged" << surferAge << "was created" << std::endl;
+}
+
+SurfReport::Surfer::~Surfer()
+{
+    std::cout<< "a Surfer aged" << surferAge << "was destroyed" << std::endl;
+}
+
+void SurfReport::Surfer::levelUp( int improvementAmount )
+{
+    if (surferSkill <= 10)
+    {
+        for (int x = 0; x <= improvementAmount && surferSkill <= 10; x++)
+
+            surferSkill += 1; 
+    }
+}
+void SurfReport::Surfer::getTubed( int currentStokeLevel )
+{
+    currentStokeLevel += 10; 
+    std::cout << "tubed! Stoke level =" << currentStokeLevel << std::endl;
+}
+void SurfReport::Surfer::wipeOut( int currentStokeLevel )
+{
+    currentStokeLevel -=10;
+    std::cout << "wipeout! Stoke level =" << currentStokeLevel << std::endl;
+}
+
+void SurfReport::increaseWaveHeight( float newWaveHeight )
+{
+    waveHeight = newWaveHeight; 
+}
+bool SurfReport::shouldIGoOut( int fatigueLevel )
+{
+    if (fatigueLevel < 10)
+    {
+        fatigueLevel += 1;
+        return true;
+    }
+    return false;
+}
+float SurfReport::chooseBoardSize()
+{
+    float boardLength = 8.f;
+    for (float x = 0.f; x <= waveHeight; x+=1.f)
+    {
+        if (boardLength > 5.0)
+        {
+            boardLength -= .5
+        }
+    }
+    return boardLength;
+}
+
+/*
+ new UDT 4:
+ */
+struct Lineup
+{
+    SurfReport::Surfer joe{ };
+    SurfReport::Surfer madeline{};
+    SurfReport::Surfer coretta{};
+    SurfReport tuesday{};
+};
+
+/*
+ new UDT 5:
+ */
+struct SchoolWeek 
+{
+    SchoolDay monday{};
+    SchoolDay tuesday{};
+    SchoolDay wednesday{};
+    SchoolDay thursday{};
+    SchoolDay friday{};
+};
+
+
+
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
