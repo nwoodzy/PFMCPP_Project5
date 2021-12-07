@@ -285,12 +285,12 @@ SurfReport::~SurfReport()
 SurfReport::Surfer::Surfer()
 {
     surferAge = 35;
-    std::cout<< "a Surfer aged: " << surferAge << "was created" << std::endl;
+    std::cout<< "a Surfer aged: " << surferAge << " was created" << std::endl;
 }
 
 SurfReport::Surfer::~Surfer()
 {
-    std::cout<< "a Surfer aged: " << surferAge << "was destroyed" << std::endl;
+    std::cout<< "a Surfer aged: " << surferAge << " was destroyed" << std::endl;
 }
 
 void SurfReport::Surfer::levelUp( int improvementAmount )
@@ -380,11 +380,11 @@ void Lineup::getSurferInfo( SurfReport::Surfer surfer )
     {
         std::cout << "surfer is not at the beach" << std::endl;
     }
-    std::cout << "surfer is" << surfer.surferAge << "years old" << std::endl;
+    std::cout << "surfer is " << surfer.surferAge << " years old" << std::endl;
 
-    std::cout << "surfer's skill level is:" << surfer.surferSkill << std::endl;
+    std::cout << "surfer's skill level is: " << surfer.surferSkill << std::endl;
     
-    std::cout << "surfer is using a" << surfer.boardSize << "ft board" << std::endl;
+    std::cout << "surfer is using a " << surfer.boardSize << "ft board" << std::endl;
     
     if ( surfer.havingLesson == true)
     {
@@ -536,7 +536,7 @@ int main()
     shania.wipeOut( 10 );
 
 
-    std::cout << "good to go!" << std::endl;
+
 
 //Lineup
     std::cout << "\nLineup test\n" << std::endl;
@@ -544,5 +544,9 @@ int main()
     Lineup thursdayAM, thursdayPM;
 
     thursdayAM.getSurferInfo( thursdayAM.joe );
+
     thursdayPM.teachASurferToSurf( thursdayPM.coretta );
+
+
+    std::cout << "good to go!" << std::endl;
 }
