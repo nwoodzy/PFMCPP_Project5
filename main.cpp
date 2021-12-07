@@ -69,12 +69,12 @@ struct Sailboat
         bool isLateen = false;
         bool isStepped = true;
         int numOfReefs = 0;
+        int numOfTotalReefs = 4;
 
         void reduceSail( int reefs );
         void increaseSail (int reefs );
-        int getHeeldDistance ( int distanceToWater );
+        int getHeelDistance ( int distanceToWater );
     };
-    Mast mast;
 
     int numOfSails;
     float length = 13.8f;
@@ -91,15 +91,15 @@ Sailboat::Sailboat()
 {
     numOfSails = 1;
     hasKeel = false;
-    std::cout << "a Sailboat named" << boatName << "was created" << std::endl; 
+    std::cout << "a Sailboat was created" << std::endl; 
 }
 Sailboat::~Sailboat()
 {
-    std::cout << "a Sailboat named" << boatName << "was destroyed" << std::endl; 
+    std::cout << "a Sailboat named was destroyed" << std::endl; 
 }
 Sailboat::Mast::Mast()
 {
-    int mastHeight = 14;
+    mastHeight = 14;
     std::cout << "a mast was created" << std::endl;
 }
 
@@ -108,12 +108,11 @@ Sailboat::Mast::~Mast()
     std::cout << "a mast was destroyed" << std::endl; 
 }
 
-
-Sailboat laser;
-
 int Sailboat::findOppositeTack( int directionInDegrees )
 {
-    return ( directionInDegrees + 180 ) % 360;
+    int x = ( directionInDegrees + 180 ) % 360;
+    std::cout << "your new heading is " << x << "degrees" << std::endl;
+    return x;
 }
 
 void Sailboat::trimSail( int currentTrim, int inchesOfSheet )
@@ -130,16 +129,49 @@ void Sailboat::trimSail( int currentTrim, int inchesOfSheet )
 
 void Sailboat::dropAnchor()
 {
-    while (bool isStillFloating = true)
+    if (isAnchored == false)
     {
-        if (laser.isAnchored == false)
-        {
-            laser.isAnchored = !laser.isAnchored;
-            std::cout << "now you're anchored mate." << std::endl; 
-        }
+        isAnchored = true;
+        std::cout << "now you're anchored mate." << std::endl; 
+    }
+    else
+    {
         std::cout << "you're already anchored!" << std::endl; 
     }
 }
+void Sailboat::Mast::reduceSail( int reefs )
+{
+    if (numOfReefs != numOfTotalReefs)
+    {
+        numOfReefs += reefs;
+    }
+    else 
+    {
+        std::cout << "you can't take that many reefs!" << std::endl;
+    }
+}
+void Sailboat::Mast::increaseSail (int reefs )
+{
+    if ( numOfTotalReefs == 0 )
+    {
+        std::cout << "you're sail is all the way up already!" << std::endl;
+    }
+    if ( reefs > numOfTotalReefs  )
+    {
+        numOfReefs = numOfTotalReefs;
+    }
+    else 
+    {
+        numOfReefs -= reefs;
+    }
+}
+int Sailboat::Mast::getHeelDistance ( int distanceToWater )
+{
+    int x = mastHeight - distanceToWater;
+    std::cout << "Heel distance is: " << x << std::endl;
+    return x;
+}
+
 /*
  UDT 2:
  */
@@ -150,6 +182,9 @@ struct SchoolDay
     std::string dayOfTheWeek;
     float length;
     int numberOfKids = 15;
+    bool runningLate;
+    bool halfDay = false;
+    bool isRaining = false;
     struct Child
     {
         Child();
@@ -164,13 +199,9 @@ struct SchoolDay
         void makeLunch();
         void takeNap();
     };
-    Child child;
-    bool runningLate;
-    bool halfDay = false;
-    bool isRaining = false;
     
     void splitUpClass( int numOfGroups );
-    void lengthenSchoolDay( float lengthIncrease );
+    void shortenSchoolDay( float lengthDecrease );
     void sunCameOut();
 };
 SchoolDay::SchoolDay()
@@ -178,13 +209,13 @@ SchoolDay::SchoolDay()
     dayOfTheWeek = "Monday";
     length = 6.f;
     runningLate = false;
-    std::cout << dayOfTheWeek << "was created" << std::endl;
+    std::cout << "A schoolday was created" << std::endl;
 
-};
+}
 SchoolDay::~SchoolDay()
 {
-    std::cout << dayOfTheWeek << "was destroyed" << std::endl;
-};
+    std::cout << "A schoolday was destroyed" << std::endl;
+}
 SchoolDay::Child::Child()
 {
     std::cout << "a child aged:" << childAge << "was created" << std::endl;
@@ -198,18 +229,18 @@ void SchoolDay::splitUpClass(int numOfGroups)
 {   
     if (numberOfKids != 0)
     {
-        numberOfKids /= 2;
+        numberOfKids /= numOfGroups;
     }
     else
     {
         std::cout << "there are" << numberOfKids << "kids in class!" << std::endl;
     }
 }
-void SchoolDay::lengthenSchoolDay( float lengthIncrease )
+void SchoolDay::shortenSchoolDay( float lengthDecrease )
 {
-    while (halfDay == false)
+    if (halfDay == false)
     {
-        length += lengthIncrease;
+        length -= lengthDecrease;
         halfDay = true;
     }
     
@@ -254,7 +285,6 @@ struct SurfReport
         void getTubed( int currentStokeLevel );
         void wipeOut( int currentStokeLevel );
     };
-    Surfer s;
 
     void increaseWaveHeight( float newWaveHeight );
     bool shouldIGoOut( int fatigueLevel );
@@ -263,8 +293,8 @@ struct SurfReport
 
 SurfReport::SurfReport()
 {
-    waveHeight = 3.5;
-    wavePeriod = 18.4;
+    waveHeight = 3.5f;
+    wavePeriod = 18.f;
     windDirection = "SSE";
     windSpeed = 10;
     std::cout<< "a SurfReport was created" << std::endl;
@@ -324,9 +354,9 @@ float SurfReport::chooseBoardSize()
     float boardLength = 8.f;
     for (float x = 0.f; x <= waveHeight; x+=1.f)
     {
-        if (boardLength > 5.0)
+        if (boardLength > 5.f)
         {
-            boardLength -= .5;
+            boardLength -= .5f;
         }
     }
     return boardLength;
@@ -339,13 +369,13 @@ struct Lineup
 {
     Lineup();
     ~Lineup();
-    SurfReport::Surfer joe{ };
+    SurfReport::Surfer joe {};
     SurfReport::Surfer madeline{};
     SurfReport::Surfer coretta{};
     SurfReport tuesday{};
 
     void getSurferInfo( SurfReport::Surfer surfer );
-    
+    void teachASurferToSurf( SurfReport::Surfer surfer );
 };
 
 Lineup::Lineup()
@@ -357,6 +387,38 @@ Lineup::~Lineup()
 {
     std::cout << "a Lineup was destroyed" << std::endl;
     tuesday.isBusy = false;
+}
+
+void Lineup::getSurferInfo( SurfReport::Surfer surfer ) 
+{
+    if ( surfer.atBeach == true)
+    {
+        std::cout << "surfer is at the beach" << std::endl;
+    }
+    else 
+    {
+        std::cout << "surfer is not at the beach" << std::endl;
+    }
+    std::cout << "surfer is" << surfer.surferAge << "years old" << std::endl;
+
+    std::cout << "surfer's skill level is:" << surfer.surferSkill << std::endl;
+    
+    std::cout << "surfer is using a" << surfer.boardSize << "ft board" << std::endl;
+    
+    if ( surfer.havingLesson == true)
+    {
+        std::cout << "surfer is having lesson" << std::endl;
+    }
+    else 
+    {
+        std::cout << "surfer is not having lesson" << std::endl;
+    }
+}
+
+void Lineup::teachASurferToSurf( SurfReport::Surfer surfer )
+{
+    surfer.havingLesson = true;
+    std::cout << "surfer is now having lesson" << std::endl;
 }
 /*
  new UDT 5:
@@ -370,6 +432,9 @@ struct SchoolWeek
     SchoolDay wednesday{};
     SchoolDay thursday{};
     SchoolDay friday{};
+
+    void makeHalfDay( SchoolDay day );
+    void snowDay( SchoolDay day);
 };
 
 SchoolWeek::SchoolWeek()
@@ -387,6 +452,19 @@ SchoolWeek::~SchoolWeek()
     std::cout << "a SchoolWeek was destroyed" << std::endl;
 }
 
+void makeHalfDay( SchoolDay day, float lengthDecrease )
+{
+    day.shortenSchoolDay( lengthDecrease );
+}
+
+void snowDay( SchoolDay day )
+{
+    day.length = 0;
+    day.numberOfKids = 15;
+    std::cout << "No school, snow day!" << std::endl;
+}
+
+
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
@@ -397,9 +475,64 @@ SchoolWeek::~SchoolWeek()
     pin the pull request link and this repl.it link to our DM thread in a single message.
  send me a DM to review your pull request when the project is ready for review.
  Wait for my code review.
- */
+ 
 
+7) use at least 2 instances of each of your UDTs in main. 
+       - call every member function of your UDTs to make sure they work as expected and don't produce warnings.
+       - add some std::cout statements in main() that use your UDT's member variables.
+       you have 5 UDTs and 2 nested UDTs, so there should be at minimum 14 UDTs declared in main(), as well as 14 * 3 function calls happening.
+*/
 int main()
 {
+    //Sailboat
+    std::cout << "\nSailboat test\n" << std::endl;
+    Sailboat laser, rhodes;
+
+    rhodes.numOfSails = 2;
+    laser.numOfSails = 1;
+
+    std::cout << "Rhodes has " << rhodes.numOfSails << " sails" << std::endl;
+    std::cout << "Laser has " << laser.numOfSails << " sails" << std::endl;
+
+    laser.findOppositeTack ( 12 );
+
+    rhodes.trimSail( 15, 12 );
+    rhodes.dropAnchor();
+
+    Sailboat::Mast mast1, mast2;
+    
+    mast1.mastHeight = 14;
+    std::cout << "mast1 height: " << mast1.mastHeight << std::endl;
+
+    mast1.reduceSail( 2 );
+    std::cout << "mast 1 number of reefs: " << mast1.numOfReefs << std::endl;
+    mast2.increaseSail ( 5 );
+    mast1.getHeelDistance ( 2 );
+
+    //SchoolDay
+    std::cout << "\nSchoolDay test\n" << std::endl;
+
+    SchoolDay monday, tuesday;
+
+    monday.dayOfTheWeek = "monday";
+    tuesday.dayOfTheWeek = "tuesday";
+    tuesday.length = 6.f;
+    monday.numberOfKids = 5;
+    tuesday.halfDay = false;
+
+    monday.splitUpClass( 2 );
+    std::cout << monday.numberOfKids <<" kids in each group " << std::endl;
+    tuesday.shortenSchoolDay( 2.f );
+    std::cout << "the day is now: " <<tuesday.length <<" hours long" << std::endl;
+    monday.sunCameOut();
+    if (monday.isRaining == false)
+    {
+        std::cout << "it isn't raining anymore!" << std::endl;
+    }
+
+ //SchoolDay
+    std::cout << "\nSchoolDay test\n" << std::endl;
+
     std::cout << "good to go!" << std::endl;
+
 }
