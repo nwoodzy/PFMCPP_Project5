@@ -538,8 +538,11 @@ int main()
 
     std::cout << "good to go!" << std::endl;
 
-//LineUp
-    std::cout << "\nLineUp test\n" << std::endl;
+//Lineup
+    std::cout << "\nLineup test\n" << std::endl;
 
+    Lineup thursdayAM, thursdayPM;
 
+    thursdayAM.getSurferInfo( thursdayAM.joe );
+    thursdayPM.teachASurferToSurf( thursdayPM.coretta );
 }
