@@ -185,21 +185,6 @@ struct SchoolDay
     bool runningLate;
     bool halfDay = false;
     bool isRaining = false;
-    struct Child
-    {
-        Child();
-        ~Child();
-        int numOfNaps;
-        int childAge;
-        bool hasLunch;
-        bool isDressed;
-        bool wearingShoes;
-
-        void goHomeEarly();
-        void makeLunch();
-        void takeNap();
-    };
-    
     void splitUpClass( int numOfGroups );
     void shortenSchoolDay( float lengthDecrease );
     void sunCameOut();
@@ -215,14 +200,6 @@ SchoolDay::SchoolDay()
 SchoolDay::~SchoolDay()
 {
     std::cout << "A schoolday was destroyed" << std::endl;
-}
-SchoolDay::Child::Child()
-{
-    std::cout << "a child aged:" << childAge << "was created" << std::endl;
-}
-SchoolDay::Child::~Child()
-{
-    std::cout << "a child aged:" << childAge << "was destroyed" << std::endl;
 }
 
 void SchoolDay::splitUpClass(int numOfGroups)
@@ -328,25 +305,28 @@ void SurfReport::Surfer::levelUp( int improvementAmount )
 void SurfReport::Surfer::getTubed( int currentStokeLevel )
 {
     currentStokeLevel += 10; 
-    std::cout << "tubed! Stoke level =" << currentStokeLevel << std::endl;
+    std::cout << "tubed! Stoke level = " << currentStokeLevel << std::endl;
 }
 void SurfReport::Surfer::wipeOut( int currentStokeLevel )
 {
     currentStokeLevel -=10;
-    std::cout << "wipeout! Stoke level =" << currentStokeLevel << std::endl;
+    std::cout << "wipeout! Stoke level = " << currentStokeLevel << std::endl;
 }
 
-void SurfReport::increaseWaveHeight( float newWaveHeight )
+void SurfReport::increaseWaveHeight( float heightIncrease )
 {
-    waveHeight = newWaveHeight; 
+    waveHeight += heightIncrease; 
 }
 bool SurfReport::shouldIGoOut( int fatigueLevel )
 {
     if (fatigueLevel < 10)
     {
         fatigueLevel += 1;
+        std::cout << "new fatigue level = " << fatigueLevel << std::endl;
+        std::cout << "yes you should go out" << std::endl;
         return true;
     }
+    std::cout << "Don't go out" << std::endl;
     return false;
 }
 float SurfReport::chooseBoardSize()
@@ -359,6 +339,7 @@ float SurfReport::chooseBoardSize()
             boardLength -= .5f;
         }
     }
+    std::cout << "Board length should be: " << boardLength << std::endl;
     return boardLength;
 }
 
@@ -530,9 +511,35 @@ int main()
         std::cout << "it isn't raining anymore!" << std::endl;
     }
 
- //SchoolDay
-    std::cout << "\nSchoolDay test\n" << std::endl;
+ //SurfReport
+    std::cout << "\nSurfReport test\n" << std::endl;
+
+    SurfReport nov15, nov16;
+
+    nov15.waveHeight = 20.f;
+    nov16.waveHeight = 3.f;
+
+    std::cout << "November 15th wave height is: " << nov15.waveHeight << std::endl;
+
+    nov15.increaseWaveHeight( 20.f );
+
+    std::cout << "November 15th wave height is now: " << nov15.waveHeight << std::endl;
+
+    nov16.shouldIGoOut( 8 );
+    nov15.chooseBoardSize();
+
+    SurfReport::Surfer shania, cody;
+
+    shania.levelUp( 3 );
+    std::cout << "Shania's level is: " << shania.surferSkill << std::endl;
+    cody.getTubed( 4 );
+    shania.wipeOut( 10 );
+
 
     std::cout << "good to go!" << std::endl;
 
+//LineUp
+    std::cout << "\nLineUp test\n" << std::endl;
+
+    
 }
