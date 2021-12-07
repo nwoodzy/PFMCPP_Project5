@@ -285,12 +285,12 @@ SurfReport::~SurfReport()
 SurfReport::Surfer::Surfer()
 {
     surferAge = 35;
-    std::cout<< "a Surfer aged" << surferAge << "was created" << std::endl;
+    std::cout<< "a Surfer aged: " << surferAge << "was created" << std::endl;
 }
 
 SurfReport::Surfer::~Surfer()
 {
-    std::cout<< "a Surfer aged" << surferAge << "was destroyed" << std::endl;
+    std::cout<< "a Surfer aged: " << surferAge << "was destroyed" << std::endl;
 }
 
 void SurfReport::Surfer::levelUp( int improvementAmount )
@@ -541,5 +541,5 @@ int main()
 //LineUp
     std::cout << "\nLineUp test\n" << std::endl;
 
-    
+
 }
