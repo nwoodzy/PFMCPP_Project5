@@ -299,8 +299,11 @@ void SurfReport::Surfer::levelUp( int improvementAmount )
     if (surferSkill <= 10)
     {
         for (int x = 0; x <= improvementAmount && surferSkill <= 10; x++)
-
-            surferSkill += 1; 
+        {
+            int i = surferSkill;
+            i += 1;
+            surferSkill = i;
+        }
     }
 }
 void SurfReport::Surfer::getTubed( int currentStokeLevel )
@@ -322,7 +325,9 @@ bool SurfReport::shouldIGoOut( int fatigueLevel )
 {
     if (fatigueLevel < 10)
     {
-        fatigueLevel += 1;
+        int i = fatigueLevel;
+        i += 1;
+        fatigueLevel = i;
         std::cout << "new fatigue level = " << fatigueLevel << std::endl;
         std::cout << "yes you should go out" << std::endl;
         return true;
@@ -333,7 +338,7 @@ bool SurfReport::shouldIGoOut( int fatigueLevel )
 float SurfReport::chooseBoardSize()
 {
     float boardLength = 8.f;
-    for (float x = 0.f; x <= waveHeight; x+=1.f)
+    for (float x = 0.f; x <= waveHeight; x += 1.f)
     {
         if (boardLength > 5.f)
         {
