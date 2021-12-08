@@ -143,7 +143,9 @@ void Sailboat::Mast::reduceSail( int reefs )
 {
     if (numOfReefs != numOfTotalReefs)
     {
-        numOfReefs += reefs;
+        int i = numOfReefs;
+        i += reefs;
+        numOfReefs = i;
     }
     else 
     {
@@ -162,7 +164,9 @@ void Sailboat::Mast::increaseSail (int reefs )
     }
     else 
     {
-        numOfReefs -= reefs;
+        int i = numOfReefs;
+        i-= reefs;
+        numOfReefs = i;
     }
 }
 int Sailboat::Mast::getHeelDistance ( int distanceToWater )
@@ -217,7 +221,9 @@ void SchoolDay::shortenSchoolDay( float lengthDecrease )
 {
     if (halfDay == false)
     {
-        length -= lengthDecrease;
+        float i = length;
+        i -= lengthDecrease;
+        length = i;
         std::cout << "SchoolDay length is now: " << length << std::endl;
         halfDay = true;
     }
