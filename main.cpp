@@ -283,9 +283,9 @@ SurfReport::~SurfReport()
     std::cout<< "a SurfReport was destroyed" << std::endl;
 }
 
-SurfReport::Surfer::Surfer()
+SurfReport::Surfer::Surfer() :
+surferAge(35)
 {
-    surferAge = 35;
     std::cout<< "a Surfer aged: " << surferAge << " was created" << std::endl;
 }
 
@@ -457,12 +457,6 @@ void SchoolWeek::snowDay( SchoolDay day )
     pin the pull request link and this repl.it link to our DM thread in a single message.
  send me a DM to review your pull request when the project is ready for review.
  Wait for my code review.
- 
-
-7) use at least 2 instances of each of your UDTs in main. 
-       - call every member function of your UDTs to make sure they work as expected and don't produce warnings.
-       - add some std::cout statements in main() that use your UDT's member variables.
-       you have 5 UDTs and 2 nested UDTs, so there should be at minimum 14 UDTs declared in main(), as well as 14 * 3 function calls happening.
 */
 int main()
 {
