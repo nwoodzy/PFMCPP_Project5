@@ -218,6 +218,7 @@ void SchoolDay::shortenSchoolDay( float lengthDecrease )
     if (halfDay == false)
     {
         length -= lengthDecrease;
+        std::cout << "SchoolDay length is now: " << length << std::endl;
         halfDay = true;
     }
     
@@ -413,8 +414,8 @@ struct SchoolWeek
     SchoolDay wednesday{};
     SchoolDay thursday{};
     SchoolDay friday{};
-
-    void makeHalfDay( SchoolDay day );
+    
+    void makeHalfDay( SchoolDay day, float lengthDecrease );
     void snowDay( SchoolDay day);
 };
 
@@ -433,12 +434,12 @@ SchoolWeek::~SchoolWeek()
     std::cout << "a SchoolWeek was destroyed" << std::endl;
 }
 
-void makeHalfDay( SchoolDay day, float lengthDecrease )
+void SchoolWeek::makeHalfDay( SchoolDay day, float lengthDecrease )
 {
     day.shortenSchoolDay( lengthDecrease );
 }
 
-void snowDay( SchoolDay day )
+void SchoolWeek::snowDay( SchoolDay day )
 {
     day.length = 0;
     day.numberOfKids = 15;
@@ -547,6 +548,16 @@ int main()
 
     thursdayPM.teachASurferToSurf( thursdayPM.coretta );
 
+//SchoolWeek
+    std::cout << "\nSchoolWeek test\n" << std::endl;
+
+    SchoolWeek week1, week2;
+
+    week1.makeHalfDay( week1.monday, 2.f );
+    std::cout << "monday's length is now: " << week1.monday.length << std::endl;
+
+    week2.snowDay( week2.thursday);
 
     std::cout << "good to go!" << std::endl;
 }
+
