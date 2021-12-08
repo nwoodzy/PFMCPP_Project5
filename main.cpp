@@ -351,10 +351,10 @@ struct Lineup
 {
     Lineup();
     ~Lineup();
-    SurfReport::Surfer joe {};
-    SurfReport::Surfer madeline{};
-    SurfReport::Surfer coretta{};
-    SurfReport tuesday{};
+    SurfReport::Surfer joe;
+    SurfReport::Surfer madeline;
+    SurfReport::Surfer coretta;
+    SurfReport tuesday;
 
     void getSurferInfo( SurfReport::Surfer surfer );
     void teachASurferToSurf( SurfReport::Surfer surfer );
@@ -409,11 +409,11 @@ struct SchoolWeek
 {
     SchoolWeek();
     ~SchoolWeek();
-    SchoolDay monday{};
-    SchoolDay tuesday{};
-    SchoolDay wednesday{};
-    SchoolDay thursday{};
-    SchoolDay friday{};
+    SchoolDay monday;
+    SchoolDay tuesday;
+    SchoolDay wednesday;
+    SchoolDay thursday;
+    SchoolDay friday;
     
     void makeHalfDay( SchoolDay day, float lengthDecrease );
     void snowDay( SchoolDay day);
