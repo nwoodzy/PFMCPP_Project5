@@ -119,7 +119,7 @@ void Sailboat::trimSail( int currentTrim, int inchesOfSheet )
 {
     if (inchesOfSheet != 0)
     {
-        for (int x = 0; x <= inchesOfSheet; x++)
+        for (int x = 0; x <= inchesOfSheet; ++x)
         {
             currentTrim -= inchesOfSheet;
         }
@@ -165,7 +165,7 @@ void Sailboat::Mast::increaseSail (int reefs )
     else 
     {
         int i = numOfReefs;
-        i-= reefs;
+        i -= reefs;
         numOfReefs = i;
     }
 }
@@ -304,10 +304,10 @@ void SurfReport::Surfer::levelUp( int improvementAmount )
 {
     if (surferSkill <= 10)
     {
-        for (int x = 0; x <= improvementAmount && surferSkill <= 10; x++)
+        for (int x = 0; x <= improvementAmount && surferSkill <= 10; ++x)
         {
             int i = surferSkill;
-            i += 1;
+            ++i;
             surferSkill = i;
         }
     }
@@ -319,7 +319,7 @@ void SurfReport::Surfer::getTubed( int currentStokeLevel )
 }
 void SurfReport::Surfer::wipeOut( int currentStokeLevel )
 {
-    currentStokeLevel -=10;
+    currentStokeLevel -= 10;
     std::cout << "wipeout! Stoke level = " << currentStokeLevel << std::endl;
 }
 
@@ -332,7 +332,7 @@ bool SurfReport::shouldIGoOut( int fatigueLevel )
     if (fatigueLevel < 10)
     {
         int i = fatigueLevel;
-        i += 1;
+        ++i;
         fatigueLevel = i;
         std::cout << "new fatigue level = " << fatigueLevel << std::endl;
         std::cout << "yes you should go out" << std::endl;
