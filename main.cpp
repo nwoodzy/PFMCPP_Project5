@@ -91,6 +91,14 @@ struct Sailboat
         int numOfReefs = 0;
         int numOfTotalReefs = 4;
 
+        void mastHeightCheck()
+        {
+            std::cout << "mast height: " << this->mastHeight << std::endl;
+        }
+        void reefCheck()
+        {
+            std::cout << "number of reefs: " << this->numOfReefs << std::endl;
+        }
         void reduceSail( int reefs );
         void increaseSail (int reefs );
         int getHeelDistance ( int distanceToWater );
@@ -103,6 +111,10 @@ struct Sailboat
     bool hasKeel;
     bool isStillFloating = true;
     
+    void sailCheck()
+    {
+        std::cout << "Sailboat has " << this->numOfSails << " sails" << std::endl;
+    }
     int findOppositeTack ( int directionInDegrees );
     void trimSail( int currentTrim, int inchesOfSheet );
     void dropAnchor();
@@ -209,6 +221,15 @@ struct SchoolDay
     bool runningLate;
     bool halfDay = false;
     bool isRaining = false;
+
+    void dayLengthCheck()
+    {
+        std::cout << "the day is now: " <<this->length <<" hours long" << std::endl;
+    }
+    void howManyKids()
+    {
+        std::cout << this->numberOfKids <<" kids in each group " << std::endl;
+    }
     void splitUpClass( int numOfGroups );
     void shortenSchoolDay( float lengthDecrease );
     void sunCameOut();
@@ -285,11 +306,19 @@ struct SurfReport
         float boardSize = 6.8f;
         bool havingLesson = false;
 
+        void surferLevelCheck()
+        {
+            std::cout << "Surfer's level is: " << this->surferSkill << std::endl;
+        }
         void levelUp( int improvementAmount );
         void getTubed( int currentStokeLevel );
         void wipeOut( int currentStokeLevel );
     };
 
+    void waveHeightCheck()
+    {
+        std::cout << "Wave height is: " << this->waveHeight << std::endl;
+    }
     void increaseWaveHeight( float newWaveHeight );
     bool shouldIGoOut( int fatigueLevel );
     float chooseBoardSize();
@@ -501,6 +530,9 @@ int main()
     std::cout << "Rhodes has " << rhodes.numOfSails << " sails" << std::endl;
     std::cout << "Laser has " << laser.numOfSails << " sails" << std::endl;
 
+    rhodes.sailCheck();
+    laser.sailCheck();
+
     laser.findOppositeTack ( 12 );
 
     rhodes.trimSail( 15, 12 );
@@ -511,8 +543,13 @@ int main()
     mast1.mastHeight = 14;
     std::cout << "mast1 height: " << mast1.mastHeight << std::endl;
 
+    mast1.mastHeightCheck();
+
     mast1.reduceSail( 2 );
     std::cout << "mast 1 number of reefs: " << mast1.numOfReefs << std::endl;
+
+    mast1.reefCheck();
+
     mast2.increaseSail ( 5 );
     mast1.getHeelDistance ( 2 );
 
@@ -529,8 +566,14 @@ int main()
 
     monday.splitUpClass( 2 );
     std::cout << monday.numberOfKids <<" kids in each group " << std::endl;
+
+    monday.howManyKids();
+
     tuesday.shortenSchoolDay( 2.f );
     std::cout << "the day is now: " <<tuesday.length <<" hours long" << std::endl;
+
+    tuesday.dayLengthCheck();
+
     monday.sunCameOut();
     if (monday.isRaining == false)
     {
@@ -547,9 +590,13 @@ int main()
 
     std::cout << "November 15th wave height is: " << nov15.waveHeight << std::endl;
 
+    nov15.waveHeightCheck();
+
     nov15.increaseWaveHeight( 20.f );
 
     std::cout << "November 15th wave height is now: " << nov15.waveHeight << std::endl;
+
+    nov15.waveHeightCheck();
 
     nov16.shouldIGoOut( 8 );
     nov15.chooseBoardSize();
@@ -558,6 +605,9 @@ int main()
 
     shania.levelUp( 3 );
     std::cout << "Shania's level is: " << shania.surferSkill << std::endl;
+
+    shania.surferLevelCheck();
+
     cody.getTubed( 4 );
     shania.wipeOut( 10 );
 
@@ -580,6 +630,8 @@ int main()
 
     week1.makeHalfDay( week1.monday, 2.f );
     std::cout << "monday's length is now: " << week1.monday.length << std::endl;
+
+    week1.monday.dayLengthCheck();
 
     week2.snowDay( week2.thursday);
 
