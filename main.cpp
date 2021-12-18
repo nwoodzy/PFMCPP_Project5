@@ -145,6 +145,17 @@ Sailboat::Mast::~Mast()
     std::cout << "a mast was destroyed" << std::endl; 
 }
 
+struct SailboatWrapper
+{
+    SailboatWrapper( Sailboat* ptr ) : pointerToSailboat( ptr ) {}
+    ~SailboatWrapper()
+    {
+        delete pointerToSailboat;
+    }
+
+    Sailboat* pointerToSailboat = nullptr;
+};
+
 int Sailboat::findOppositeTack( int directionInDegrees )
 {
     int x = ( directionInDegrees + 180 ) % 360;
@@ -253,6 +264,17 @@ SchoolDay::~SchoolDay()
     std::cout << "A schoolday was destroyed" << std::endl;
 }
 
+struct SchoolDayWrapper
+{
+    SchoolDayWrapper( SchoolDay* ptr ) : pointerToSchoolDay( ptr ) {}
+    ~SchoolDayWrapper()
+    {
+        delete pointerToSchoolDay;
+    }
+
+    SchoolDay* pointerToSchoolDay = nullptr;
+};
+
 void SchoolDay::splitUpClass(int numOfGroups)
 {   
     if (numberOfKids != 0)
@@ -356,6 +378,17 @@ SurfReport::Surfer::~Surfer()
     std::cout<< "a Surfer aged: " << surferAge << " was destroyed" << std::endl;
 }
 
+struct SurfReportWrapper
+{
+    SurfReportWrapper( SurfReport* ptr ) : pointerToSurfReport( ptr ) {}
+    ~SurfReportWrapper()
+    {
+        delete pointerToSurfReport;
+    }
+
+    SurfReport* pointerToSurfReport = nullptr;
+};
+
 void SurfReport::Surfer::levelUp( int improvementAmount )
 {
     if (surferSkill <= 10)
@@ -439,6 +472,16 @@ Lineup::~Lineup()
     tuesday.isBusy = false;
 }
 
+struct LineupWrapper
+{
+    LineupWrapper( Lineup* ptr ) : pointerToLineup( ptr ) {}
+    ~LineupWrapper()
+    {
+        delete pointerToLineup;
+    }
+    Lineup* pointerToLineup = nullptr;
+};
+
 void Lineup::getSurferInfo( SurfReport::Surfer surfer ) 
 {
     if ( surfer.atBeach == true)
@@ -502,6 +545,16 @@ SchoolWeek::~SchoolWeek()
     friday.length = 6.0;
     std::cout << "a SchoolWeek was destroyed" << std::endl;
 }
+
+struct SchoolWeekWrapper
+{
+    SchoolWeekWrapper( SchoolWeek* ptr ) : pointerToSchoolWeek ( ptr ) {}
+    ~SchoolWeekWrapper()
+    {
+        delete pointerToSchoolWeek;
+    }
+    SchoolWeek* pointerToSchoolWeek = nullptr;
+};
 
 void SchoolWeek::makeHalfDay( SchoolDay day, float lengthDecrease )
 {
