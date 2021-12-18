@@ -1,3 +1,5 @@
+#include <iostream>
+#include "LeakedObjectDetector.h"
 /*
  Project 5: Part 3 / 4
  video: Chapter 3 Part 4: 
@@ -120,6 +122,7 @@ struct Sailboat
     int findOppositeTack ( int directionInDegrees );
     void trimSail( int currentTrim, int inchesOfSheet );
     void dropAnchor();
+    JUCE_LEAK_DETECTOR(Sailboat)
 };
 Sailboat::Sailboat()
 {
@@ -235,6 +238,7 @@ struct SchoolDay
     void splitUpClass( int numOfGroups );
     void shortenSchoolDay( float lengthDecrease );
     void sunCameOut();
+    JUCE_LEAK_DETECTOR(SchoolDay)
 };
 SchoolDay::SchoolDay()
 { 
@@ -324,6 +328,7 @@ struct SurfReport
     void increaseWaveHeight( float newWaveHeight );
     bool shouldIGoOut( int fatigueLevel );
     float chooseBoardSize();
+    JUCE_LEAK_DETECTOR(SurfReport)
 };
 
 SurfReport::SurfReport()
@@ -420,6 +425,7 @@ struct Lineup
 
     void getSurferInfo( SurfReport::Surfer surfer );
     void teachASurferToSurf( SurfReport::Surfer surfer );
+    JUCE_LEAK_DETECTOR(Lineup)
 };
 
 Lineup::Lineup()
@@ -479,6 +485,7 @@ struct SchoolWeek
     
     void makeHalfDay( SchoolDay day, float lengthDecrease );
     void snowDay( SchoolDay day);
+    JUCE_LEAK_DETECTOR(SchoolWeek)
 };
 
 SchoolWeek::SchoolWeek()
@@ -522,6 +529,8 @@ void SchoolWeek::snowDay( SchoolDay day )
 */
 int main()
 {
+    #include "LeakedObjectDetector.h"
+
     //Sailboat
     std::cout << "\nSailboat test\n" << std::endl;
     Sailboat laser, rhodes;
