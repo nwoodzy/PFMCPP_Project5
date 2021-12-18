@@ -156,6 +156,16 @@ struct SailboatWrapper
     Sailboat* pointerToSailboat = nullptr;
 };
 
+struct MastWrapper 
+{
+    MastWrapper( Sailboat::Mast* ptr ) : pointerToMast( ptr ) {}
+    ~MastWrapper()
+    {
+        delete pointerToMast;
+    }
+    Sailboat::Mast* pointerToMast = nullptr;
+};
+
 int Sailboat::findOppositeTack( int directionInDegrees )
 {
     int x = ( directionInDegrees + 180 ) % 360;
@@ -387,6 +397,17 @@ struct SurfReportWrapper
     }
 
     SurfReport* pointerToSurfReport = nullptr;
+};
+
+struct SurferWrapper
+{
+    SurferWrapper( SurfReport::Surfer* ptr ) : pointerToSurfer( ptr )
+    ~SurferWrapper()
+    {
+        delete pointerToSurfer;
+    }
+
+    SurfReport::Surfer* pointerToSurfer = nullptr;
 };
 
 void SurfReport::Surfer::levelUp( int improvementAmount )
