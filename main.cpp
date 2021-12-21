@@ -24,7 +24,7 @@ Create a branch named Part3
 #if false
  Axe axe;
  std::cout << "axe sharpness: " << axe.sharpness << "\n";
- #endif
+#endif
  /*
     you would update that to use your wrappers:
     
@@ -401,7 +401,7 @@ struct SurfReportWrapper
 
 struct SurferWrapper
 {
-    SurferWrapper( SurfReport::Surfer* ptr ) : pointerToSurfer( ptr )
+    SurferWrapper( SurfReport::Surfer* ptr ) : pointerToSurfer( ptr ){}
     ~SurferWrapper()
     {
         delete pointerToSurfer;
