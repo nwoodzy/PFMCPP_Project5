@@ -1,3 +1,5 @@
+#include <iostream>
+#include "LeakedObjectDetector.h"
 /*
  Project 5: Part 3 / 4
  video: Chapter 3 Part 4: 
@@ -22,7 +24,7 @@ Create a branch named Part3
 #if false
  Axe axe;
  std::cout << "axe sharpness: " << axe.sharpness << "\n";
- #endif
+#endif
  /*
     you would update that to use your wrappers:
     
@@ -120,6 +122,7 @@ struct Sailboat
     int findOppositeTack ( int directionInDegrees );
     void trimSail( int currentTrim, int inchesOfSheet );
     void dropAnchor();
+    JUCE_LEAK_DETECTOR(Sailboat)
 };
 Sailboat::Sailboat()
 {
@@ -141,6 +144,27 @@ Sailboat::Mast::~Mast()
 {
     std::cout << "a mast was destroyed" << std::endl; 
 }
+
+struct SailboatWrapper
+{
+    SailboatWrapper( Sailboat* ptr ) : pointerToSailboat( ptr ) {}
+    ~SailboatWrapper()
+    {
+        delete pointerToSailboat;
+    }
+
+    Sailboat* pointerToSailboat = nullptr;
+};
+
+struct MastWrapper 
+{
+    MastWrapper( Sailboat::Mast* ptr ) : pointerToMast( ptr ) {}
+    ~MastWrapper()
+    {
+        delete pointerToMast;
+    }
+    Sailboat::Mast* pointerToMast = nullptr;
+};
 
 int Sailboat::findOppositeTack( int directionInDegrees )
 {
@@ -235,6 +259,7 @@ struct SchoolDay
     void splitUpClass( int numOfGroups );
     void shortenSchoolDay( float lengthDecrease );
     void sunCameOut();
+    JUCE_LEAK_DETECTOR(SchoolDay)
 };
 SchoolDay::SchoolDay()
 { 
@@ -248,6 +273,17 @@ SchoolDay::~SchoolDay()
 {
     std::cout << "A schoolday was destroyed" << std::endl;
 }
+
+struct SchoolDayWrapper
+{
+    SchoolDayWrapper( SchoolDay* ptr ) : pointerToSchoolDay( ptr ) {}
+    ~SchoolDayWrapper()
+    {
+        delete pointerToSchoolDay;
+    }
+
+    SchoolDay* pointerToSchoolDay = nullptr;
+};
 
 void SchoolDay::splitUpClass(int numOfGroups)
 {   
@@ -324,6 +360,7 @@ struct SurfReport
     void increaseWaveHeight( float newWaveHeight );
     bool shouldIGoOut( int fatigueLevel );
     float chooseBoardSize();
+    JUCE_LEAK_DETECTOR(SurfReport)
 };
 
 SurfReport::SurfReport()
@@ -350,6 +387,28 @@ SurfReport::Surfer::~Surfer()
 {
     std::cout<< "a Surfer aged: " << surferAge << " was destroyed" << std::endl;
 }
+
+struct SurfReportWrapper
+{
+    SurfReportWrapper( SurfReport* ptr ) : pointerToSurfReport( ptr ) {}
+    ~SurfReportWrapper()
+    {
+        delete pointerToSurfReport;
+    }
+
+    SurfReport* pointerToSurfReport = nullptr;
+};
+
+struct SurferWrapper
+{
+    SurferWrapper( SurfReport::Surfer* ptr ) : pointerToSurfer( ptr ){}
+    ~SurferWrapper()
+    {
+        delete pointerToSurfer;
+    }
+
+    SurfReport::Surfer* pointerToSurfer = nullptr;
+};
 
 void SurfReport::Surfer::levelUp( int improvementAmount )
 {
@@ -420,6 +479,7 @@ struct Lineup
 
     void getSurferInfo( SurfReport::Surfer surfer );
     void teachASurferToSurf( SurfReport::Surfer surfer );
+    JUCE_LEAK_DETECTOR(Lineup)
 };
 
 Lineup::Lineup()
@@ -432,6 +492,16 @@ Lineup::~Lineup()
     std::cout << "a Lineup was destroyed" << std::endl;
     tuesday.isBusy = false;
 }
+
+struct LineupWrapper
+{
+    LineupWrapper( Lineup* ptr ) : pointerToLineup( ptr ) {}
+    ~LineupWrapper()
+    {
+        delete pointerToLineup;
+    }
+    Lineup* pointerToLineup = nullptr;
+};
 
 void Lineup::getSurferInfo( SurfReport::Surfer surfer ) 
 {
@@ -479,6 +549,7 @@ struct SchoolWeek
     
     void makeHalfDay( SchoolDay day, float lengthDecrease );
     void snowDay( SchoolDay day);
+    JUCE_LEAK_DETECTOR(SchoolWeek)
 };
 
 SchoolWeek::SchoolWeek()
@@ -495,6 +566,16 @@ SchoolWeek::~SchoolWeek()
     friday.length = 6.0;
     std::cout << "a SchoolWeek was destroyed" << std::endl;
 }
+
+struct SchoolWeekWrapper
+{
+    SchoolWeekWrapper( SchoolWeek* ptr ) : pointerToSchoolWeek ( ptr ) {}
+    ~SchoolWeekWrapper()
+    {
+        delete pointerToSchoolWeek;
+    }
+    SchoolWeek* pointerToSchoolWeek = nullptr;
+};
 
 void SchoolWeek::makeHalfDay( SchoolDay day, float lengthDecrease )
 {
@@ -522,23 +603,25 @@ void SchoolWeek::snowDay( SchoolDay day )
 */
 int main()
 {
+    #include "LeakedObjectDetector.h"
+
     //Sailboat
     std::cout << "\nSailboat test\n" << std::endl;
-    Sailboat laser, rhodes;
+    SailboatWrapper laser( new Sailboat() ), rhodes( new Sailboat() );
 
-    rhodes.numOfSails = 2;
-    laser.numOfSails = 1;
+    rhodes.pointerToSailboat->numOfSails = 2;
+    laser.pointerToSailboat->numOfSails = 1;
 
-    std::cout << "Rhodes has " << rhodes.numOfSails << " sails" << std::endl;
-    std::cout << "Laser has " << laser.numOfSails << " sails" << std::endl;
+    std::cout << "Rhodes has " << rhodes.pointerToSailboat->numOfSails << " sails" << std::endl;
+    std::cout << "Laser has " << laser.pointerToSailboat->numOfSails << " sails" << std::endl;
 
-    rhodes.sailCheck();
-    laser.sailCheck();
+    rhodes.pointerToSailboat->sailCheck();
+    laser.pointerToSailboat->sailCheck();
 
-    laser.findOppositeTack ( 12 );
+    laser.pointerToSailboat->findOppositeTack ( 12 );
 
-    rhodes.trimSail( 15, 12 );
-    rhodes.dropAnchor();
+    rhodes.pointerToSailboat->trimSail( 15, 12 );
+    rhodes.pointerToSailboat->dropAnchor();
 
     Sailboat::Mast mast1, mast2;
     
@@ -558,26 +641,26 @@ int main()
     //SchoolDay
     std::cout << "\nSchoolDay test\n" << std::endl;
 
-    SchoolDay monday, tuesday;
+    SchoolDayWrapper monday( new SchoolDay() ), tuesday( new SchoolDay() );
 
-    monday.dayOfTheWeek = "monday";
-    tuesday.dayOfTheWeek = "tuesday";
-    tuesday.length = 6.f;
-    monday.numberOfKids = 5;
-    tuesday.halfDay = false;
+    monday.pointerToSchoolDay->dayOfTheWeek = "monday";
+    tuesday.pointerToSchoolDay->dayOfTheWeek = "tuesday";
+    tuesday.pointerToSchoolDay->length = 6.f;
+    monday.pointerToSchoolDay->numberOfKids = 5;
+    tuesday.pointerToSchoolDay->halfDay = false;
 
-    monday.splitUpClass( 2 );
-    std::cout << monday.numberOfKids <<" kids in each group " << std::endl;
+    monday.pointerToSchoolDay->splitUpClass( 2 );
+    std::cout << monday.pointerToSchoolDay->numberOfKids <<" kids in each group " << std::endl;
 
-    monday.howManyKids();
+    monday.pointerToSchoolDay->howManyKids();
 
-    tuesday.shortenSchoolDay( 2.f );
-    std::cout << "the day is now: " <<tuesday.length <<" hours long" << std::endl;
+    tuesday.pointerToSchoolDay->shortenSchoolDay( 2.f );
+    std::cout << "the day is now: " <<tuesday.pointerToSchoolDay->length <<" hours long" << std::endl;
 
-    tuesday.dayLengthCheck();
+    tuesday.pointerToSchoolDay->dayLengthCheck();
 
-    monday.sunCameOut();
-    if (monday.isRaining == false)
+    monday.pointerToSchoolDay->sunCameOut();
+    if (monday.pointerToSchoolDay->isRaining == false)
     {
         std::cout << "it isn't raining anymore!" << std::endl;
     }
@@ -585,23 +668,23 @@ int main()
  //SurfReport
     std::cout << "\nSurfReport test\n" << std::endl;
 
-    SurfReport nov15, nov16;
+    SurfReportWrapper nov15( new SurfReport() ), nov16( new SurfReport );
 
-    nov15.waveHeight = 20.f;
-    nov16.waveHeight = 3.f;
+    nov15.pointerToSurfReport->waveHeight = 20.f;
+    nov16.pointerToSurfReport->waveHeight = 3.f;
 
-    std::cout << "November 15th wave height is: " << nov15.waveHeight << std::endl;
+    std::cout << "November 15th wave height is: " << nov15.pointerToSurfReport->waveHeight << std::endl;
 
-    nov15.waveHeightCheck();
+    nov15.pointerToSurfReport->waveHeightCheck();
 
-    nov15.increaseWaveHeight( 20.f );
+    nov15.pointerToSurfReport->increaseWaveHeight( 20.f );
 
-    std::cout << "November 15th wave height is now: " << nov15.waveHeight << std::endl;
+    std::cout << "November 15th wave height is now: " << nov15.pointerToSurfReport->waveHeight << std::endl;
 
-    nov15.waveHeightCheck();
+    nov15.pointerToSurfReport->waveHeightCheck();
 
-    nov16.shouldIGoOut( 8 );
-    nov15.chooseBoardSize();
+    nov16.pointerToSurfReport->shouldIGoOut( 8 );
+    nov15.pointerToSurfReport->chooseBoardSize();
 
     SurfReport::Surfer shania, cody;
 
@@ -619,23 +702,23 @@ int main()
 //Lineup
     std::cout << "\nLineup test\n" << std::endl;
 
-    Lineup thursdayAM, thursdayPM;
+    LineupWrapper thursdayAM( new Lineup() ), thursdayPM( new Lineup() );
 
-    thursdayAM.getSurferInfo( thursdayAM.joe );
+    thursdayAM.pointerToLineup->getSurferInfo( thursdayAM.pointerToLineup->joe );
 
-    thursdayPM.teachASurferToSurf( thursdayPM.coretta );
+    thursdayPM.pointerToLineup->teachASurferToSurf( thursdayPM.pointerToLineup->coretta );
 
 //SchoolWeek
     std::cout << "\nSchoolWeek test\n" << std::endl;
 
-    SchoolWeek week1, week2;
+    SchoolWeekWrapper week1( new SchoolWeek() ), week2( new SchoolWeek() );
 
-    week1.makeHalfDay( week1.monday, 2.f );
-    std::cout << "monday's length is now: " << week1.monday.length << std::endl;
+    week1.pointerToSchoolWeek->makeHalfDay( week1.pointerToSchoolWeek->monday, 2.f );
+    std::cout << "monday's length is now: " << week1.pointerToSchoolWeek->monday.length << std::endl;
 
-    week1.monday.dayLengthCheck();
+    week1.pointerToSchoolWeek->monday.dayLengthCheck();
 
-    week2.snowDay( week2.thursday);
+    week2.pointerToSchoolWeek->snowDay( week2.pointerToSchoolWeek->thursday);
 
     std::cout << "good to go!" << std::endl;
 }
