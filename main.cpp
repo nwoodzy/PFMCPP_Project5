@@ -35,58 +35,15 @@
 
 #include <iostream>
 #include "LeakedObjectDetector.h"
+#include "Sailboat.h"
+#include "SchoolDay.h"
+#include "SurfReport.h"
+#include "SchoolWeek.h"
+#include "Lineup.h"
 
 /*
  UDT 1:
  */
-struct Sailboat 
-{
-    Sailboat();
-    ~Sailboat();
-
-    std::string boatName;
-    struct Mast
-    {
-        Mast();
-        ~Mast();
-
-        int mastHeight;
-        int boomLength = 109;
-        bool isBermudaRig = true;
-        bool isLateen = false;
-        bool isStepped = true;
-        int numOfReefs = 0;
-        int numOfTotalReefs = 4;
-
-        void mastHeightCheck()
-        {
-            std::cout << "mast height: " << this->mastHeight << std::endl;
-        }
-        void reefCheck()
-        {
-            std::cout << "number of reefs: " << this->numOfReefs << std::endl;
-        }
-        void reduceSail( int reefs );
-        void increaseSail (int reefs );
-        int getHeelDistance ( int distanceToWater );
-    };
-
-    int numOfSails;
-    float length = 13.8f;
-    bool isAnchored = false;
-    float sailArea = 50.6f;
-    bool hasKeel;
-    bool isStillFloating = true;
-    
-    void sailCheck()
-    {
-        std::cout << "Sailboat has " << this->numOfSails << " sails" << std::endl;
-    }
-    int findOppositeTack ( int directionInDegrees );
-    void trimSail( int currentTrim, int inchesOfSheet );
-    void dropAnchor();
-    JUCE_LEAK_DETECTOR(Sailboat)
-};
 Sailboat::Sailboat()
 {
     numOfSails = 1;
@@ -200,30 +157,7 @@ int Sailboat::Mast::getHeelDistance ( int distanceToWater )
 /*
  UDT 2:
  */
-struct SchoolDay
-{   
-    SchoolDay();
-    ~SchoolDay();
-    std::string dayOfTheWeek;
-    float length;
-    int numberOfKids = 15;
-    bool runningLate;
-    bool halfDay = false;
-    bool isRaining = false;
 
-    void dayLengthCheck()
-    {
-        std::cout << "the day is now: " <<this->length <<" hours long" << std::endl;
-    }
-    void howManyKids()
-    {
-        std::cout << this->numberOfKids <<" kids in each group " << std::endl;
-    }
-    void splitUpClass( int numOfGroups );
-    void shortenSchoolDay( float lengthDecrease );
-    void sunCameOut();
-    JUCE_LEAK_DETECTOR(SchoolDay)
-};
 SchoolDay::SchoolDay()
 { 
     dayOfTheWeek = "Monday";
@@ -287,44 +221,6 @@ void SchoolDay::sunCameOut()
 /*
  UDT 3:
  */
-struct SurfReport
-{
-    SurfReport();
-    ~SurfReport();
-    float waveHeight;
-    float wavePeriod;
-    std::string windDirection;
-    int windSpeed;
-    bool isRaining = false;
-    bool isBusy = false;
-    struct Surfer
-    {
-        Surfer();
-        ~Surfer();
-        bool atBeach = true;
-        int surferAge;
-        int surferSkill = 0;
-        float boardSize = 6.8f;
-        bool havingLesson = false;
-
-        void surferLevelCheck()
-        {
-            std::cout << "Surfer's level is: " << this->surferSkill << std::endl;
-        }
-        void levelUp( int improvementAmount );
-        void getTubed( int currentStokeLevel );
-        void wipeOut( int currentStokeLevel );
-    };
-
-    void waveHeightCheck()
-    {
-        std::cout << "Wave height is: " << this->waveHeight << std::endl;
-    }
-    void increaseWaveHeight( float newWaveHeight );
-    bool shouldIGoOut( int fatigueLevel );
-    float chooseBoardSize();
-    JUCE_LEAK_DETECTOR(SurfReport)
-};
 
 SurfReport::SurfReport()
 {
@@ -431,19 +327,6 @@ float SurfReport::chooseBoardSize()
 /*
  new UDT 4:
  */
-struct Lineup
-{
-    Lineup();
-    ~Lineup();
-    SurfReport::Surfer joe;
-    SurfReport::Surfer madeline;
-    SurfReport::Surfer coretta;
-    SurfReport tuesday;
-
-    void getSurferInfo( SurfReport::Surfer surfer );
-    void teachASurferToSurf( SurfReport::Surfer surfer );
-    JUCE_LEAK_DETECTOR(Lineup)
-};
 
 Lineup::Lineup()
 {
@@ -500,20 +383,6 @@ void Lineup::teachASurferToSurf( SurfReport::Surfer surfer )
 /*
  new UDT 5:
  */
-struct SchoolWeek 
-{
-    SchoolWeek();
-    ~SchoolWeek();
-    SchoolDay monday;
-    SchoolDay tuesday;
-    SchoolDay wednesday;
-    SchoolDay thursday;
-    SchoolDay friday;
-    
-    void makeHalfDay( SchoolDay day, float lengthDecrease );
-    void snowDay( SchoolDay day);
-    JUCE_LEAK_DETECTOR(SchoolWeek)
-};
 
 SchoolWeek::SchoolWeek()
 {
