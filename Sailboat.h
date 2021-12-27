@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "LeakedObjectDetector.h"
 
 /*
  UDT 1:
@@ -50,5 +51,6 @@ struct Sailboat
     int findOppositeTack ( int directionInDegrees );
     void trimSail( int currentTrim, int inchesOfSheet );
     void dropAnchor();
+
     JUCE_LEAK_DETECTOR(Sailboat)
 };

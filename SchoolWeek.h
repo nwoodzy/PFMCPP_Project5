@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include "LeakedObjectDetector.h"
+#include "SchoolDay.h"
 
 struct SchoolWeek 
 {
