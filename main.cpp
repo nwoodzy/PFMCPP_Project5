@@ -108,20 +108,20 @@ int main()
     rhodes.pointerToSailboat->trimSail( 15, 12 );
     rhodes.pointerToSailboat->dropAnchor();
 
-    Sailboat::Mast mast1, mast2;
-    
-    mast1.mastHeight = 14;
-    std::cout << "mast1 height: " << mast1.mastHeight << std::endl;
+    MastWrapper mast1( new Sailboat::Mast() ), mast2( new Sailboat::Mast() );
 
-    mast1.mastHeightCheck();
+    mast1.pointerToMast->mastHeight = 14;
+    std::cout << "mast1 height: " << mast1.pointerToMast->mastHeight << std::endl;
 
-    mast1.reduceSail( 2 );
-    std::cout << "mast 1 number of reefs: " << mast1.numOfReefs << std::endl;
+    mast1.pointerToMast->mastHeightCheck();
 
-    mast1.reefCheck();
+    mast1.pointerToMast->reduceSail( 2 );
+    std::cout << "mast 1 number of reefs: " << mast1.pointerToMast->numOfReefs << std::endl;
 
-    mast2.increaseSail ( 5 );
-    mast1.getHeelDistance ( 2 );
+    mast1.pointerToMast->reefCheck();
+
+    mast2.pointerToMast->increaseSail ( 5 );
+    mast1.pointerToMast->getHeelDistance ( 2 );
 
     //SchoolDay
     std::cout << "\nSchoolDay test\n" << std::endl;
@@ -137,12 +137,12 @@ int main()
     monday.pointerToSchoolDay->splitUpClass( 2 );
     std::cout << monday.pointerToSchoolDay->numberOfKids <<" kids in each group " << std::endl;
 
-    monday.pointerToSchoolDay->howManyKids();
+    monday.pointerToSchoolDay->howManyKids( *monday.pointerToSchoolDay);
 
     tuesday.pointerToSchoolDay->shortenSchoolDay( 2.f );
     std::cout << "the day is now: " <<tuesday.pointerToSchoolDay->length <<" hours long" << std::endl;
 
-    tuesday.pointerToSchoolDay->dayLengthCheck();
+    tuesday.pointerToSchoolDay->dayLengthCheck(*tuesday.pointerToSchoolDay);
 
     monday.pointerToSchoolDay->sunCameOut();
     if (monday.pointerToSchoolDay->isRaining == false)
@@ -160,26 +160,26 @@ int main()
 
     std::cout << "November 15th wave height is: " << nov15.pointerToSurfReport->waveHeight << std::endl;
 
-    nov15.pointerToSurfReport->waveHeightCheck();
+    nov15.pointerToSurfReport->waveHeightCheck(*nov15.pointerToSurfReport);
 
     nov15.pointerToSurfReport->increaseWaveHeight( 20.f );
 
     std::cout << "November 15th wave height is now: " << nov15.pointerToSurfReport->waveHeight << std::endl;
 
-    nov15.pointerToSurfReport->waveHeightCheck();
+    nov15.pointerToSurfReport->waveHeightCheck(*nov15.pointerToSurfReport);
 
     nov16.pointerToSurfReport->shouldIGoOut( 8 );
     nov15.pointerToSurfReport->chooseBoardSize();
 
-    SurfReport::Surfer shania, cody;
+    SurferWrapper shania( new SurfReport::Surfer() ), cody( new SurfReport::Surfer() );
 
-    shania.levelUp( 3 );
-    std::cout << "Shania's level is: " << shania.surferSkill << std::endl;
+    shania.pointerToSurfer->levelUp( 3 );
+    std::cout << "Shania's level is: " << shania.pointerToSurfer->surferSkill << std::endl;
 
-    shania.surferLevelCheck();
+    shania.pointerToSurfer->surferLevelCheck(*shania.pointerToSurfer);
 
-    cody.getTubed( 4 );
-    shania.wipeOut( 10 );
+    cody.pointerToSurfer->getTubed( 4 );
+    shania.pointerToSurfer->wipeOut( 10 );
 
 
 
@@ -201,7 +201,7 @@ int main()
     week1.pointerToSchoolWeek->makeHalfDay( week1.pointerToSchoolWeek->monday, 2.f );
     std::cout << "monday's length is now: " << week1.pointerToSchoolWeek->monday.length << std::endl;
 
-    week1.pointerToSchoolWeek->monday.dayLengthCheck();
+    //week1.pointerToSchoolWeek->monday.dayLengthCheck();
 
     week2.pointerToSchoolWeek->snowDay( week2.pointerToSchoolWeek->thursday);
 

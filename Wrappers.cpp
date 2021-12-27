@@ -12,7 +12,7 @@ SailboatWrapper::~SailboatWrapper()
     delete pointerToSailboat;
 }
 
-MastWrapper::MastWrapper( Mast* ptr ) : pointerToMast( ptr ) {}
+MastWrapper::MastWrapper( Sailboat::Mast* ptr ) : pointerToMast( ptr ) {}
 
 MastWrapper::~MastWrapper()
 {
@@ -35,7 +35,7 @@ SurfReportWrapper::~SurfReportWrapper()
 }
 
 
-SurferWrapper::SurferWrapper( Surfer* ptr ) : pointerToSurfer( ptr ){}
+SurferWrapper::SurferWrapper( SurfReport::Surfer* ptr ) : pointerToSurfer( ptr ){}
 
 SurferWrapper::~SurferWrapper()
 {

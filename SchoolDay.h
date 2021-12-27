@@ -13,14 +13,8 @@ struct SchoolDay
     bool halfDay = false;
     bool isRaining = false;
 
-    void dayLengthCheck()
-    {
-        std::cout << "the day is now: " <<this->length <<" hours long" << std::endl;
-    }
-    void howManyKids()
-    {
-        std::cout << this->numberOfKids <<" kids in each group " << std::endl;
-    }
+    void dayLengthCheck( SchoolDay& schoolday );
+    void howManyKids( SchoolDay& schoolday );
     void splitUpClass( int numOfGroups );
     void shortenSchoolDay( float lengthDecrease );
     void sunCameOut();

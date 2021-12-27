@@ -14,7 +14,7 @@ Lineup::~Lineup()
 
 void Lineup::getSurferInfo( SurfReport::Surfer surfer ) 
 {
-    if ( surfer.atBeach == true)
+    if ( surfer.atBeach )
     {
         std::cout << "surfer is at the beach" << std::endl;
     }
@@ -28,7 +28,7 @@ void Lineup::getSurferInfo( SurfReport::Surfer surfer )
     
     std::cout << "surfer is using a " << surfer.boardSize << "ft board" << std::endl;
     
-    if ( surfer.havingLesson == true)
+    if ( surfer.havingLesson )
     {
         std::cout << "surfer is having lesson" << std::endl;
     }

@@ -22,19 +22,13 @@ struct SurfReport
         float boardSize = 6.8f;
         bool havingLesson = false;
 
-        void surferLevelCheck()
-        {
-            std::cout << "Surfer's level is: " << this->surferSkill << std::endl;
-        }
+        void surferLevelCheck(SurfReport::Surfer& surfer);
         void levelUp( int improvementAmount );
         void getTubed( int currentStokeLevel );
         void wipeOut( int currentStokeLevel );
     };
 
-    void waveHeightCheck()
-    {
-        std::cout << "Wave height is: " << this->waveHeight << std::endl;
-    }
+    void waveHeightCheck( SurfReport& report );
     void increaseWaveHeight( float newWaveHeight );
     bool shouldIGoOut( int fatigueLevel );
     float chooseBoardSize();

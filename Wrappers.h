@@ -20,10 +20,10 @@ struct SailboatWrapper
 
 struct MastWrapper 
 {
-    MastWrapper( Mast* ptr );
+    MastWrapper( Sailboat::Mast* ptr );
     ~MastWrapper();
 
-    Mast* pointerToMast = nullptr;
+    Sailboat::Mast* pointerToMast = nullptr;
 };
 
 struct SchoolDayWrapper
@@ -44,10 +44,10 @@ struct SurfReportWrapper
 
 struct SurferWrapper
 {
-    SurferWrapper( Surfer* ptr );
+    SurferWrapper( SurfReport::Surfer* ptr );
     ~SurferWrapper();
 
-    Surfer* pointerToSurfer = nullptr;
+    SurfReport::Surfer* pointerToSurfer = nullptr;
 };
 
 struct LineupWrapper

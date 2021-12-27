@@ -39,7 +39,7 @@ void SchoolDay::shortenSchoolDay( float lengthDecrease )
 }   
 void SchoolDay::sunCameOut()
 {
-    if (isRaining == true)
+    if ( isRaining )
     {
         isRaining = false;
         std::cout << "sun came out" << std::endl;
@@ -49,3 +49,12 @@ void SchoolDay::sunCameOut()
         std::cout << "sun is already out" << std::endl;
     }
 }
+void dayLengthCheck( SchoolDay& schoolday )
+    {
+        std::cout << "the day is now: " << schoolday.length <<" hours long" << std::endl;
+    }
+void howManyKids( SchoolDay& schoolday )
+    {
+        std::cout << schoolday.numberOfKids <<" kids in each group " << std::endl;
+    }
+    

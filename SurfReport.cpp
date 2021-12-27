@@ -80,3 +80,14 @@ float SurfReport::chooseBoardSize()
     std::cout << "Board length should be: " << boardLength << std::endl;
     return boardLength;
 }
+
+void SurfReport::waveHeightCheck(SurfReport& report)
+    {
+        std::cout << "Wave height is: " << report.waveHeight << std::endl;
+    }
+
+void SurfReport::Surfer::surferLevelCheck(SurfReport::Surfer& surfer)
+    {
+        std::cout << "Surfer's level is: " << surfer.surferSkill << std::endl;
+    }
+ 
