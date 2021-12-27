@@ -88,3 +88,17 @@ int Sailboat::Mast::getHeelDistance ( int distanceToWater )
     std::cout << "Heel distance is: " << x << std::endl;
     return x;
 }
+
+void Sailboat::sailCheck( Sailboat& sailboat )
+{
+    std::cout << "Sailboat has " << sailboat.numOfSails << " sails" << std::endl;
+}
+
+void Sailboat::Mast::mastHeightCheck( Sailboat::Mast& mast )
+{
+    std::cout << "mast height: " << mast.mastHeight << std::endl;
+}
+void Sailboat::Mast::reefCheck( Sailboat::Mast& mast )
+{
+    std::cout << "number of reefs: " << mast.numOfReefs << std::endl;
+}

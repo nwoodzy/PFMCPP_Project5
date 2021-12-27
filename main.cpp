@@ -100,8 +100,8 @@ int main()
     std::cout << "Rhodes has " << rhodes.pointerToSailboat->numOfSails << " sails" << std::endl;
     std::cout << "Laser has " << laser.pointerToSailboat->numOfSails << " sails" << std::endl;
 
-    rhodes.pointerToSailboat->sailCheck();
-    laser.pointerToSailboat->sailCheck();
+    rhodes.pointerToSailboat->sailCheck( *rhodes.pointerToSailboat );
+    laser.pointerToSailboat->sailCheck( *laser.pointerToSailboat );
 
     laser.pointerToSailboat->findOppositeTack ( 12 );
 
@@ -113,12 +113,12 @@ int main()
     mast1.pointerToMast->mastHeight = 14;
     std::cout << "mast1 height: " << mast1.pointerToMast->mastHeight << std::endl;
 
-    mast1.pointerToMast->mastHeightCheck();
+    mast1.pointerToMast->mastHeightCheck( *mast1.pointerToMast );
 
     mast1.pointerToMast->reduceSail( 2 );
     std::cout << "mast 1 number of reefs: " << mast1.pointerToMast->numOfReefs << std::endl;
 
-    mast1.pointerToMast->reefCheck();
+    mast1.pointerToMast->reefCheck( *mast1.pointerToMast );
 
     mast2.pointerToMast->increaseSail ( 5 );
     mast1.pointerToMast->getHeelDistance ( 2 );

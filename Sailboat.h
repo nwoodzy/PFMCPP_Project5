@@ -24,14 +24,8 @@ struct Sailboat
         int numOfReefs = 0;
         int numOfTotalReefs = 4;
 
-        void mastHeightCheck()
-        {
-            std::cout << "mast height: " << this->mastHeight << std::endl;
-        }
-        void reefCheck()
-        {
-            std::cout << "number of reefs: " << this->numOfReefs << std::endl;
-        }
+        void mastHeightCheck( Sailboat::Mast& mast );
+        void reefCheck( Sailboat::Mast& mast );
         void reduceSail( int reefs );
         void increaseSail (int reefs );
         int getHeelDistance ( int distanceToWater );
@@ -44,10 +38,7 @@ struct Sailboat
     bool hasKeel;
     bool isStillFloating = true;
     
-    void sailCheck()
-    {
-        std::cout << "Sailboat has " << this->numOfSails << " sails" << std::endl;
-    }
+    void sailCheck( Sailboat& sailboat );
     int findOppositeTack ( int directionInDegrees );
     void trimSail( int currentTrim, int inchesOfSheet );
     void dropAnchor();

@@ -49,11 +49,11 @@ void SchoolDay::sunCameOut()
         std::cout << "sun is already out" << std::endl;
     }
 }
-void dayLengthCheck( SchoolDay& schoolday )
+void SchoolDay::dayLengthCheck( SchoolDay& schoolday )
     {
         std::cout << "the day is now: " << schoolday.length <<" hours long" << std::endl;
     }
-void howManyKids( SchoolDay& schoolday )
+void SchoolDay::howManyKids( SchoolDay& schoolday )
     {
         std::cout << schoolday.numberOfKids <<" kids in each group " << std::endl;
     }
