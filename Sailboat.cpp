@@ -56,9 +56,7 @@ void Sailboat::Mast::reduceSail( int reefs )
 {
     if (numOfReefs != numOfTotalReefs)
     {
-        int i = numOfReefs;
-        i += reefs;
-        numOfReefs = i;
+        numOfReefs += reefs;
     }
     else 
     {
@@ -77,9 +75,7 @@ void Sailboat::Mast::increaseSail (int reefs )
     }
     else 
     {
-        int i = numOfReefs;
-        i -= reefs;
-        numOfReefs = i;
+        numOfReefs -= reefs;
     }
 }
 int Sailboat::Mast::getHeelDistance ( int distanceToWater )

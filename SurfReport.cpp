@@ -32,9 +32,7 @@ void SurfReport::Surfer::levelUp( int improvementAmount )
     {
         for (int x = 0; x <= improvementAmount && surferSkill <= 10; ++x)
         {
-            int i = surferSkill;
-            ++i;
-            surferSkill = i;
+            ++surferSkill;
         }
     }
 }
@@ -57,9 +55,7 @@ bool SurfReport::shouldIGoOut( int fatigueLevel )
 {
     if (fatigueLevel < 10)
     {
-        int i = fatigueLevel;
-        ++i;
-        fatigueLevel = i;
+        ++fatigueLevel;
         std::cout << "new fatigue level = " << fatigueLevel << std::endl;
         std::cout << "yes you should go out" << std::endl;
         return true;

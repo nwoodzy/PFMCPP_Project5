@@ -29,9 +29,7 @@ void SchoolDay::shortenSchoolDay( float lengthDecrease )
 {
     if (halfDay == false)
     {
-        float i = length;
-        i -= lengthDecrease;
-        length = i;
+        length -= lengthDecrease;
         std::cout << "SchoolDay length is now: " << length << std::endl;
         halfDay = true;
     }
