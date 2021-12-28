@@ -69,6 +69,7 @@ void Sailboat::Mast::increaseSail (int reefs )
     {
         std::cout << "you're sail is all the way up already!" << std::endl;
     }
+    
     if ( reefs > numOfTotalReefs  )
     {
         numOfReefs = numOfTotalReefs;

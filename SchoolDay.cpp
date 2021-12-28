@@ -2,17 +2,13 @@
 
 SchoolDay::SchoolDay()
 { 
-    dayOfTheWeek = "Monday";
-    length = 6.f;
-    runningLate = false;
     std::cout << "A schoolday was created" << std::endl;
-
 }
+
 SchoolDay::~SchoolDay()
 {
     std::cout << "A schoolday was destroyed" << std::endl;
 }
-
 
 void SchoolDay::splitUpClass(int numOfGroups)
 {   
@@ -25,6 +21,7 @@ void SchoolDay::splitUpClass(int numOfGroups)
         std::cout << "there are" << numberOfKids << "kids in class!" << std::endl;
     }
 }
+
 void SchoolDay::shortenSchoolDay( float lengthDecrease )
 {
     if (halfDay == false)

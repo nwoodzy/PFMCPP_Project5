@@ -17,12 +17,12 @@ SchoolWeek::~SchoolWeek()
 }
 
 
-void SchoolWeek::makeHalfDay( SchoolDay day, float lengthDecrease )
+void SchoolWeek::makeHalfDay( SchoolDay& day, float lengthDecrease )
 {
     day.shortenSchoolDay( lengthDecrease );
 }
 
-void SchoolWeek::snowDay( SchoolDay day )
+void SchoolWeek::snowDay( SchoolDay& day )
 {
     day.length = 0;
     day.numberOfKids = 15;

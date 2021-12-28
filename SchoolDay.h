@@ -6,10 +6,10 @@ struct SchoolDay
 {   
     SchoolDay();
     ~SchoolDay();
-    std::string dayOfTheWeek;
-    float length;
+    std::string dayOfTheWeek = "Monday";
+    float length = 6.f;
     int numberOfKids = 15;
-    bool runningLate;
+    bool runningLate = false;
     bool halfDay = false;
     bool isRaining = false;
 

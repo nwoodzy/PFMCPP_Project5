@@ -12,7 +12,7 @@ struct Lineup
     SurfReport::Surfer coretta;
     SurfReport tuesday;
 
-    void getSurferInfo( SurfReport::Surfer surfer );
-    void teachASurferToSurf( SurfReport::Surfer surfer );
+    void getSurferInfo( SurfReport::Surfer& surfer );
+    void teachASurferToSurf( SurfReport::Surfer& surfer );
     JUCE_LEAK_DETECTOR(Lineup)
 };

@@ -87,3 +87,4 @@ void SurfReport::Surfer::surferLevelCheck(SurfReport::Surfer& surfer)
         std::cout << "Surfer's level is: " << surfer.surferSkill << std::endl;
     }
  
+ 

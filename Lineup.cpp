@@ -12,7 +12,7 @@ Lineup::~Lineup()
     tuesday.isBusy = false;
 }
 
-void Lineup::getSurferInfo( SurfReport::Surfer surfer ) 
+void Lineup::getSurferInfo( SurfReport::Surfer& surfer ) 
 {
     if ( surfer.atBeach )
     {
@@ -38,7 +38,7 @@ void Lineup::getSurferInfo( SurfReport::Surfer surfer )
     }
 }
 
-void Lineup::teachASurferToSurf( SurfReport::Surfer surfer )
+void Lineup::teachASurferToSurf( SurfReport::Surfer& surfer )
 {
     surfer.havingLesson = true;
     std::cout << "surfer is now having lesson" << std::endl;
